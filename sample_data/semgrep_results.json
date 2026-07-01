@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "check_id": "python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+      "path": "sample_data/vulnerable_app.py",
+      "start": { "line": 15, "col": 5 },
+      "end": { "line": 15, "col": 68 },
+      "extra": {
+        "message": "String formatting used in a SQL query. This could lead to SQL injection if the string is not properly sanitized.",
+        "severity": "ERROR",
+        "lines": "    query = \"SELECT * FROM users WHERE username = '\" + username + \"'\""
+      }
+    },
+    {
+      "check_id": "python.lang.security.deserialization.avoid-yaml-load",
+      "path": "sample_data/vulnerable_app.py",
+      "start": { "line": 21, "col": 16 },
+      "end": { "line": 21, "col": 45 },
+      "extra": {
+        "message": "yaml.load() without SafeLoader can execute arbitrary code during deserialization.",
+        "severity": "ERROR",
+        "lines": "        return yaml.load(f, Loader=yaml.Loader)"
+      }
+    },
+    {
+      "check_id": "python.lang.security.audit.dangerous-system-call.dangerous-system-call",
+      "path": "sample_data/vulnerable_app.py",
+      "start": { "line": 26, "col": 5 },
+      "end": { "line": 26, "col": 55 },
+      "extra": {
+        "message": "Found dynamic content in os.system(...). This is dangerous if external input can reach this function call, as it allows a malicious actor to execute commands.",
+        "severity": "ERROR",
+        "lines": "    os.system(f\"tar -czf backup.tar.gz {target_dir}\")"
+      }
+    }
+  ]
+}

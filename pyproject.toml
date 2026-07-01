@@ -1,0 +1,21 @@
+[project]
+name = "vuln-triage-mcp"
+version = "0.1.0"
+description = "MCP server exposing tools for autonomous vulnerability triage (SAST/SCA findings, code context, dependency advisories, git blame)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.2.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+vuln-triage-mcp = "vuln_triage_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vuln_triage_mcp"]
